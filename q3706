@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<string.h>
+void find(char a1[],char a2[],int n,int m);
+void main()
+{
+    char a1[100],a2[100];
+    printf("Please input the first str:");
+    gets(a1);
+    printf("Please input the second str:");
+    gets(a2);
+    int n,m;
+    n=strlen(a1);
+    m=strlen(a2);
+    find(a1,a2,n,m);
+}
+void find(char a1[],char a2[],int n,int m)
+{
+    int i,j;
+    int count;
+    for(i=0;i<(n-m);i++)
+    {
+        count=0;
+        for(j=0;j<=m;j++)
+        {
+            if(*(a1+i+j)==*(a2+j))
+            count++;
+            
+        }
+        if(count==m)
+        break;
+    }
+    if(count==m)
+    printf("YES\n");
+    else
+    printf("NO\n");
+}
