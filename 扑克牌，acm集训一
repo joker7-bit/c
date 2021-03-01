@@ -1,0 +1,52 @@
+#include <iostream>
+#include<queue>
+
+using namespace std;
+
+int main()
+{
+    int n;
+
+    while(scanf("%d",&n)&&n)
+    {
+
+        queue<int> before;
+        queue<int> after;
+       for(int i=1;i<=n;i++)
+          before.push(i);
+          if(n>1)
+          {
+
+
+          while(before.size()>=2)
+
+          {
+              int front;
+              front=before.front();
+              after.push(front);
+              before.pop();
+              before.push(before.front());
+              before.pop();
+          }
+           cout<<"Discarded cards:";
+          while(after.size()>1)
+          {
+              cout<<" "<<after.front()<<",";
+              after.pop();
+          }
+          cout<<" "<<after.front()<<endl;
+          after.pop();
+        cout<<"Remaining card:"<<" "<<before.front()<<endl;
+          before.pop();
+
+          }
+            if(n==1)
+            {
+                cout<<"Discarded cards:"<<endl;
+                cout<<"Remaining card:"<<" "<<before.front()<<endl;
+          before.pop();
+                continue;
+            }
+
+     }
+}
