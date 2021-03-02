@@ -1,0 +1,45 @@
+#include <iostream>
+#include<algorithm>
+int search(int a[],int b,int n);
+using namespace std;
+
+int main()
+{
+   int N,Q;
+   int CASE=1;
+   while(scanf("%d%d",&N,&Q)==2&& N &&Q)
+   {
+
+
+       int front[10003];
+       int find[10003];
+       for(int i=0;i<N;i++)
+        scanf("%d",&front[i]);
+        sort(front,front+N);
+       for(int j=0;j<Q;j++)
+        scanf("%d",&find[j]);
+         printf("CASE# %d:\n",CASE);
+       for(int j=0;j<Q;j++)
+       {
+         int k=search(front,find[j],N);
+         if(k==-1)
+            printf("%d not found\n",find[j]);
+         else
+            printf("%d found at %d\n",find[j],k);
+
+
+       }
+       CASE++;
+   }
+   return 0;
+}
+int search(int a[],int b,int n)
+{
+
+    for(int i=0;i<n;i++)
+    {
+        if(b==a[i])
+            return i+1;
+    }
+    return -1;
+}
