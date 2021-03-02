@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+void merge(int front[], int after[], int left, int mid, int right);
+void merge_sort(int front[], int after[], int left, int right);
+int main()
+{
+    int a[10];
+    int i;
+    for (i = 0; i < 10; i++)
+        scanf("%d", a + i);
+    int b[10];
+    merge_sort(a, a, 0, 9);
+    for (int j = 0; j < 10; j++)
+        printf("%2d", a[j]);
+    return 0;
+}
+void merge(int front[], int after[], int left, int mid, int right)
+{
+    int i, j, k;
+    i = left;
+    j = mid + 1;
+    k = left;
+    while ((i <= mid) && (j <= right))
+    {
+        if (front[i] >= front[j])
+        {
+            after[k] = front[j];
+            j++;
+            k++;
+        }
+        else {
+            after[k] = front[i];
+            i++;
+            k++;
+        }
+    }
+    while (i <= mid)
+    {
+        after[k++] = front[i++];
+    }
+    while (j <= right)
+    {
+        after[k++] = front[j++];
+    }
+
+}
+void merge_sort(int front[], int after[], int left, int right)
+{
+    int t[20];
+    int mid;
+    if (left == right)
+    {
+        after[left] = front[right];
+
+    }
+
+    else
+    {
+        mid = (left + right) / 2;
+        merge_sort(front, t, left, mid);
+        merge_sort(front, t, mid + 1, right);
+        merge(t, after, left, mid, right);
+    }
+
+}
