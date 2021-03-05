@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+void heap(int a[],int low,int head);
+void swap(int *a,int *b);
+int main()
+{
+    int n,k;
+    int a[10003];
+    scanf("%d%d",&n,&k);
+    for(int i=0;i<n;i++)
+        scanf("%d",a+i);
+        for(int i=(k-2)/2;i>=0;i--)
+            heap(a,i,k-1);//只需要对前k个元素构建堆
+        for(int i=k+1;i<n;i++)
+        {
+            if(a[i]>a[0])
+            {
+               swap(&a[i],&a[0]);
+               for(int i=(k-2)/2;i>=0;i--)
+              heap(a,i,k-1);
+            }
+        }
+        for(int i=0;i<k;i++)
+            printf("%d\n",a[i]);
+}
+void heap(int a[],int low,int head)
+{
+    int i,j;
+    int temp=a[low];
+    i=low;
+    j=2*i+1;
+    while(j<=head)
+    {
+        if(a[j]>=a[j+1]&&j+1<=head)
+            j=j+1;
+        if(temp>=a[j])
+        {
+            a[i]=a[j];
+            a[j]=temp;
+            i=j;
+            j=2*i+1;
+
+        }
+        else break;
+    }
+    a[i]=temp;
+}
+void swap(int *a,int *b)
+{
+    int temp;
+    temp=*a;
+    *a=*b;
+    *b=temp;
+}
